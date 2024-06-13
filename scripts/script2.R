@@ -51,3 +51,11 @@ prior_summary(M_2)
 
 # sample from a normal distribution
 quantile(rnorm(1e5), probs = c(0.025, 0.5, 0.975))
+
+# high df standard t distribution
+quantile(rt(1e5, df = 100), probs = c(0.025, 0.5, 0.975))
+
+# low df standard t distribution
+quantile(rt(1e5, df = 3), probs = c(0.025, 0.25, 0.5, 0.75, 0.975))
+quantile(rt(1e5, df = 1), probs = c(0.025, 0.25, 0.5, 0.75, 0.975))
+
