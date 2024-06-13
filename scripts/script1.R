@@ -56,8 +56,8 @@ S$mean + c(-1, 1) * 2 * S$sd
 get_beta_hpd(m + 10, n - m + 10)
 
 # 95% quantile interval
-qbeta(0.025, m + 10, n - m + 10)
-qbeta(0.975, m + 10, n - m + 10)
+c(qbeta(0.025, m + 10, n - m + 10),
+  qbeta(0.975, m + 10, n - m + 10))
 
 
 
