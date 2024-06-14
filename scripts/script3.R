@@ -9,7 +9,9 @@ summary(M_3)
 round(summary(M_3)$coefficient, 3)
 round(confint(M_3), 3)
 
-M_4 <- brm(weight ~ height + gender + age, data = weight_df)
+M_4 <- brm(weight ~ height + gender + age, 
+           save_pars = save_pars(all = TRUE),
+           data = weight_df)
 M_4
 # just the regression coefs
 round(fixef(M_4), 3)
@@ -50,3 +52,25 @@ new_priors2 <- c(
 M_6 <- brm(weight ~ height + gender + age, 
            prior = new_priors,
            data = weight_df)
+
+waic(M_6)
+loo(M_6)
+bayes_factor()
+
+# default priors: 4 predictors; compare to M_4
+M_7 <- brm(weight ~ height + gender + age + race, 
+           save_pars = save_pars(all = TRUE),
+           data = weight_df)
+
+waic(M_4, M_7)
+
+M_8 <- lm(weight ~ height + gender + age + race, 
+          data = weight_df)
+
+anova(M_3, M_8)
+
+
+loo(M_4, M_7)
+
+
+
