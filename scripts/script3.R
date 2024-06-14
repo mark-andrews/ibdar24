@@ -75,3 +75,14 @@ loo(M_4, M_7)
 bayes_factor(M_4, M_7, log = TRUE)
 
 
+# Beyond the linear models --------------------------------------------------
+
+M_9 <- brm(weight ~ height + gender + age + race, 
+           family = student(),
+           save_pars = save_pars(all = TRUE),
+           data = weight_df)
+
+waic(M_7, M_9)
+
+
+ggplot(weight_df, aes(x = height, y = weight, colour = gender)) + geom_point()
