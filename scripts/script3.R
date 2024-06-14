@@ -18,4 +18,35 @@ prior_summary(M_4)
 summarise(weight_df, median(weight), mad(weight))
 
 # draw samples from prior over sigma (residual sd)
-abs(rt(n = 100, df = 3) * 15.7) %>% quantile()
+abs(rt(n = 1e4, df = 3) * 15.7) %>% quantile() %>% round(3)
+
+stancode(M_4) # view stan code produced by brms
+
+
+
+# change priors
+M_5 <- brm(weight ~ height + gender + age, 
+           prior = set_prior("normal(0, 100)"),
+           data = weight_df)
+
+M_5
+
+round(fixef(M_5), 3)
+
+new_priors <- c(
+  set_prior(prior = 'normal(0, 10)', class = 'b', coef = 'age'),
+  set_prior(prior = 'normal(0, 100)', class = 'b', coef = 'gendermale'),
+  set_prior(prior = 'normal(0, 10)', class = 'b', coef = 'height'),
+  set_prior(prior = 'normal(0, 100)', class = 'Intercept'),
+  set_prior(prior = 'normal(0, 10)', class = 'sigma')
+)
+
+new_priors2 <- c(
+  set_prior(prior = 'normal(0, 10)', class = 'b'),
+  set_prior(prior = 'normal(0, 100)', class = 'Intercept'),
+  set_prior(prior = 'normal(0, 10)', class = 'sigma')
+)
+
+M_6 <- brm(weight ~ height + gender + age, 
+           prior = new_priors,
+           data = weight_df)
