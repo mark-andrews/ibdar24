@@ -86,3 +86,43 @@ waic(M_7, M_9)
 
 
 ggplot(weight_df, aes(x = height, y = weight, colour = gender)) + geom_point()
+
+M_10 <- brm(
+  bf(weight ~ height + gender + age + race,
+     sigma ~ height + gender + age + race),
+  family = student(),
+  cores = 4,
+  save_pars = save_pars(all = TRUE),
+  data = weight_df)
+
+waic(M_9, M_10)
+
+
+M_11 <- brm(like ~ PrivPub + sex + (1|school),
+            family = cumulative(),
+            cores = 4,
+            data = science_df)
+
+
+
+# logistic regression -----------------------------------------------------
+
+smoking_df <- mutate(smoking_df, smoker = cigs > 0)
+
+# logistic regression predicting smoking as a function of 
+# educ, cigpric, age, restaurn, lincome
+
+M_12 <- brm(smoker ~ educ + cigpric + age + restaurn + lincome, 
+            data = smoking_df,
+            cores = 4,
+            family = bernoulli(link = 'logit'))
+
+# poisson regression predicting smoking as a function of 
+# educ, cigpric, age, restaurn, lincome
+
+M_13 <- brm(cigs ~ educ + cigpric + age + restaurn + lincome, 
+            data = smoking_df,
+            cores = 4,
+            family = poisson(link = 'log'))
+
+

@@ -17,5 +17,5 @@ These are password protected, and you will have been given this password in the 
 
 * [Session 1](https://vimeo.com/958332470?share=copy)
 * [Session 2](https://vimeo.com/958439266?share=copy)
-* Session 3
+* [Session 3](https://vimeo.com/958587040?share=copy)
 
