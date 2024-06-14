@@ -72,5 +72,6 @@ anova(M_3, M_8)
 
 loo(M_4, M_7)
 
+bayes_factor(M_4, M_7, log = TRUE)
 
 

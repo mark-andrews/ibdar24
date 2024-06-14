@@ -16,6 +16,6 @@ These are password protected, and you will have been given this password in the 
 # Day 3
 
 * [Session 1](https://vimeo.com/958332470?share=copy)
-* Session 2
+* [Session 2](https://vimeo.com/958439266?share=copy)
 * Session 3
 
